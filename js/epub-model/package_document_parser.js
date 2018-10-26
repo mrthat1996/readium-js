@@ -236,10 +236,11 @@ define(['jquery', 'underscore', '../epub-fetch/markup_parser', 'URIjs', './packa
             metadata.rendition_spread = getMetaElemPropertyText(metadataElem, "rendition:spread");
             metadata.rendition_flow = getMetaElemPropertyText(metadataElem, "rendition:flow");
 
-
             // Force using reflowable layout
-            metadata.rendition_layout = "reflowable";
-        
+            var direction = spineElem.getAttribute("page-progression-direction");
+            if(direction == "ttb"){
+                metadata.rendition_layout = "reflowable";
+            }
 
             //http://www.idpf.org/epub/301/spec/epub-publications.html#fxl-property-viewport
 
